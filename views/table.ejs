@@ -1,0 +1,34 @@
+
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>UF</th>
+            <th>Município</th>
+            <th>Nome</th>
+            <th>Bairro</th>
+            <th>Endereço</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% unities.forEach(function(data) { %>
+            <tr>
+                <td>
+                    <%= data.uf %>
+                </td>
+                <td>
+                    <%= data.cidade %>
+                </td>
+                <td>
+                    <%= data.nome %>
+                </td>
+                <td>
+                    <%= data.bairro %>
+                </td>
+                <td>
+                    <%= data.endereco %>
+                </td>
+            </tr>
+            <% }) %>
+    </tbody>
+</table>
