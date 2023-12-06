@@ -29,7 +29,7 @@ export const getAllHealthUnities = async (req, res) => {
 
         const response = getPagingData(unities, page, limit);
 
-        return res.render('pagination', {unities: response.rows, totalPages: response.totalPages, totalItems: response.totalItems, currentPage: response.currentPage})
+        return res.status(200).json({unities: response.rows, totalPages: response.totalPages, totalItems: response.totalItems, currentPage: response.currentPage})
     } catch (error) {
         console.error(error)
     }
@@ -47,7 +47,7 @@ export const getAllCities = async (req, res) => {
         }
 
         const citiesSorted = cities.sort((a, b) => toNormalForm(a.cidade) < toNormalForm(b.cidade) ? -1 : toNormalForm(a.cidade) > toNormalForm(b.cidade) ? 1 : 0)
-        return res.render('cities', { cities: citiesSorted })
+        return res.status(200).json(citiesSorted)
     } catch (error) {
         console.error(error)
     }
@@ -56,7 +56,6 @@ export const getAllCities = async (req, res) => {
 export const getUnitiesByCity = async (req, res) => {
     try {
         const { city } = req.query;
-        console.log(city)
 
         const unities = await HealthUnity.findAll({
             where: {
@@ -65,7 +64,7 @@ export const getUnitiesByCity = async (req, res) => {
             attributes: ["uf", "cidade", "nome", "endereco", "bairro"]
         });
 
-        return res.render('listUnities', { unities: unities, city: city })
+        return res.status(200).json(unities)
     } catch (error) {
         console.error(error)
     }
